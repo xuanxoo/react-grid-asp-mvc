@@ -5,17 +5,18 @@ import {Link} from 'react-router';
 
 import Utils = require('../utils');
 
-interface IData {
+interface ITableStats {
     data?: any[],
     pageCount?: number,
     offset?: number,
     perPage?: number,
-    query?: string
+    query?: string,
+    currentPage? : number
 }
-interface ITableData {
+interface ITableProps {
     url: string
 }
-interface ITableRowsData {
+interface ITableRowsProps {
     data: any[]
 }
 interface ITableRowsState {
@@ -29,9 +30,9 @@ interface ITableSearchState {
 }
 interface Nothing { }
 
-export class Table extends React.Component<ITableData, IData> {
+export class Table extends React.Component<ITableProps, ITableStats> {
 
-    public state: IData;
+    public state: ITableStats;
 
     constructor(props: any) {
         super(props);
@@ -40,7 +41,8 @@ export class Table extends React.Component<ITableData, IData> {
             offset: 0,
             perPage: 10,
             pageCount: 10,
-            query: ""          
+            query: "",
+            currentPage: 0       
         };
 
         this.pageChanged = this.pageChanged.bind(this);
@@ -77,7 +79,10 @@ export class Table extends React.Component<ITableData, IData> {
         let selected = data.selected;
         let offset = Math.ceil(selected * this.state.perPage);
 
-        this.setState({ offset: offset }, () => {
+        this.setState({
+            offset: offset,
+            currentPage: data.selected
+        }, () => {
             this.populateData(this.state.query);
         });
     }
@@ -85,7 +90,8 @@ export class Table extends React.Component<ITableData, IData> {
     search(query: string) {
         this.setState({
             offset: 0,
-            query: query
+            query: query,
+            currentPage: 0
         }, () => {
             this.populateData(query);
         });
@@ -115,6 +121,7 @@ export class Table extends React.Component<ITableData, IData> {
                         marginPagesDisplayed={2}
                         pageRangeDisplayed={5}
                         onPageChange={this.pageChanged}
+                        forcePage={this.state.currentPage}
                         containerClassName={"pagination"}
                         activeClassName={"active"} />                    
                 </div>
@@ -122,7 +129,7 @@ export class Table extends React.Component<ITableData, IData> {
         }
 }
 
-export class TableRows extends React.Component<ITableRowsData, Nothing> {
+class TableRows extends React.Component<ITableRowsProps, Nothing> {
 
     constructor(props: any) {
         super(props);
@@ -150,7 +157,7 @@ export class TableRows extends React.Component<ITableRowsData, Nothing> {
     }
 }
 
-export class TableSearch extends React.Component<ITableSearchProps, ITableSearchState> {
+class TableSearch extends React.Component<ITableSearchProps, ITableSearchState> {
 
     public props: ITableSearchProps;
 

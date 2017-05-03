@@ -17,7 +17,8 @@ var Table = (function (_super) {
             offset: 0,
             perPage: 10,
             pageCount: 10,
-            query: ""
+            query: "",
+            currentPage: 0
         };
         this.pageChanged = this.pageChanged.bind(this);
         this.search = this.search.bind(this);
@@ -49,7 +50,10 @@ var Table = (function (_super) {
         var _this = this;
         var selected = data.selected;
         var offset = Math.ceil(selected * this.state.perPage);
-        this.setState({ offset: offset }, function () {
+        this.setState({
+            offset: offset,
+            currentPage: data.selected
+        }, function () {
             _this.populateData(_this.state.query);
         });
     };
@@ -57,13 +61,14 @@ var Table = (function (_super) {
         var _this = this;
         this.setState({
             offset: 0,
-            query: query
+            query: query,
+            currentPage: 0
         }, function () {
             _this.populateData(query);
         });
     };
     Table.prototype.render = function () {
-        return (React.createElement("div", null, React.createElement(TableSearch, {onSearch: this.search}), React.createElement("table", {className: "table table-responsive table-bordered"}, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Id"), React.createElement("th", null, "Fund Name"), React.createElement("th", null, "Fund Description"), React.createElement("th", null, "Last fund value"), React.createElement("th", null, "Last fund date value"))), React.createElement(TableRows, {data: this.state.data})), React.createElement(ReactPaginate, {previousLabel: "previous", nextLabel: "next", breakLabel: React.createElement("a", {href: ""}, "..."), breakClassName: "break-me", pageCount: this.state.pageCount, marginPagesDisplayed: 2, pageRangeDisplayed: 5, onPageChange: this.pageChanged, containerClassName: "pagination", activeClassName: "active"})));
+        return (React.createElement("div", null, React.createElement(TableSearch, {onSearch: this.search}), React.createElement("table", {className: "table table-responsive table-bordered"}, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Id"), React.createElement("th", null, "Fund Name"), React.createElement("th", null, "Fund Description"), React.createElement("th", null, "Last fund value"), React.createElement("th", null, "Last fund date value"))), React.createElement(TableRows, {data: this.state.data})), React.createElement(ReactPaginate, {previousLabel: "previous", nextLabel: "next", breakLabel: React.createElement("a", {href: ""}, "..."), breakClassName: "break-me", pageCount: this.state.pageCount, marginPagesDisplayed: 2, pageRangeDisplayed: 5, onPageChange: this.pageChanged, forcePage: this.state.currentPage, containerClassName: "pagination", activeClassName: "active"})));
     };
     return Table;
 }(React.Component));
@@ -81,7 +86,6 @@ var TableRows = (function (_super) {
     };
     return TableRows;
 }(React.Component));
-exports.TableRows = TableRows;
 var TableSearch = (function (_super) {
     __extends(TableSearch, _super);
     function TableSearch(props) {
@@ -97,5 +101,4 @@ var TableSearch = (function (_super) {
     };
     return TableSearch;
 }(React.Component));
-exports.TableSearch = TableSearch;
 //# sourceMappingURL=table.js.map
