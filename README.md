@@ -1,7 +1,7 @@
 Prueba Juanjo Pérez Guadas
 ==========================
 
-**Running the Application:
+** Running the Application:
 
 1. Create new database on SQL Server
 2. Import database structure from “Accudelta.DB” project
@@ -11,11 +11,6 @@ Prueba Juanjo Pérez Guadas
 
 Technologies
 ------------
-* ASP.NET MVC 5
-* EF 6 Database First 
-* AutoMapper
-* NUnit
-* Moq
 
 ### Front
 
