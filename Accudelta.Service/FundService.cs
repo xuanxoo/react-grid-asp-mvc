@@ -20,19 +20,25 @@ namespace Accudelta.Service
 
         #region Funds
 
-        public IEnumerable<V_FundWithLastValue> GetFunds(int offset, int limit, string query)
+        public IEnumerable<V_FundWithLastValue> GetFundsPaginated(int offset, int limit, string query)
         {
-            if(string.IsNullOrEmpty(query))       
-                return fundRepository.PaginatedList(f => f.Id, null, offset, limit);
-            else
-                return fundRepository.PaginatedList(f => f.Id, f => f.Name.Contains(query), offset, limit);
+            if (string.IsNullOrEmpty(query))
+                return fundRepository.GetQuery().OrderBy(f => f.Id).Skip(offset).Take(limit);
+
+            return FundQueryResults(query).OrderBy(f => f.Id).Skip(offset).Take(limit);
         }
 
         public int CountFunds(string query)
         {
             if (string.IsNullOrEmpty(query))
                 return fundRepository.GetQuery().Count();
-            return fundRepository.GetQuery().Where(x => x.Name.Contains(query)).Count();           
+
+            return FundQueryResults(query).Count();           
+        }
+
+        private IQueryable<V_FundWithLastValue> FundQueryResults(string query)
+        {
+            return fundRepository.GetQuery().Where(f => f.Name.ToLower().Contains(query.ToLower()));
         }
 
          #endregion

@@ -29,7 +29,8 @@ namespace Accudelta.Web.Controllers
         [OutputCache(Duration = 0)]
         public ActionResult GetFunds(int offset, int limit, string query)
         {
-            var data = fundService.GetFunds(offset, limit, query);
+            string queryStr = query.Trim();
+            var data = fundService.GetFundsPaginated(offset, limit, queryStr);
             if (data == null)
                 return new HttpNotFoundResult();
                    

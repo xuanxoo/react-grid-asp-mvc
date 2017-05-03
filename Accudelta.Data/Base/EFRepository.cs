@@ -52,23 +52,11 @@ namespace Accudelta.Data.Base
         public IEnumerable<T> GetAll()
         {
             return GetQuery().ToList();
-        }
-
-        public int Counter()
-        {
-            return GetQuery().Count();
-        }
+        }        
 
         public IEnumerable<T> Take(int total)
         {
             return this.ObjectSet.Take<T>(total);
-        }
-        public IEnumerable<T> PaginatedList(Expression<Func<T, int>> sort, Expression<Func<T, bool>> filter, int skipeRows, int pageSize)
-        {
-            if(filter != null)
-                return this.ObjectSet.Where(filter).OrderBy(sort).Skip<T>(skipeRows).Take(pageSize);
-
-            return this.ObjectSet.OrderBy(sort).Skip<T>(skipeRows).Take(pageSize);
         }
 
         public IEnumerable<T> StoredProcedure(string name, object[] parameteres)

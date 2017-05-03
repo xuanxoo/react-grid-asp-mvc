@@ -9,7 +9,7 @@ namespace Accudelta.Service
 {
     public interface IFundService
     {
-        IEnumerable<V_FundWithLastValue> GetFunds(int offset, int limit, string query);
+        IEnumerable<V_FundWithLastValue> GetFundsPaginated(int offset, int limit, string query);
         int CountFunds(string query);
     }
 }

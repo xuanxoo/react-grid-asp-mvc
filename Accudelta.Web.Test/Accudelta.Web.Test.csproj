@@ -92,6 +92,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Accudelta.Data\Accudelta.Data.csproj">
+      <Project>{6bb79cd9-074d-42a1-8bd4-059ad9d15fdb}</Project>
+      <Name>Accudelta.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Accudelta.Model\Accudelta.Model.csproj">
       <Project>{0b46af64-7de5-4f85-94cf-3eb2c58b80a9}</Project>
       <Name>Accudelta.Model</Name>

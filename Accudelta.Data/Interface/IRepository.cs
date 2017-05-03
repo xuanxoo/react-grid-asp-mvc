@@ -13,12 +13,9 @@ namespace Accudelta.Data.Interface
         IEnumerable<T> Find(Func<T, bool> where);
         IEnumerable<T> Take(int total);
         IEnumerable<T> StoredProcedure(string name, object[] parameteres);
-        IEnumerable<T> PaginatedList(Expression<Func<T, int>> sort, Expression<Func<T, bool>> filter, int skipeRows, int pageSize);
         T Single(Func<T, bool> where);
         T First(Func<T, bool> where);
-        T FirstOrDefault(Expression<Func<T, bool>> predicate);
-
-        int Counter();
+        T FirstOrDefault(Expression<Func<T, bool>> predicate);        
         void Delete(T entity);
         void Add(T entity);
         void Attach(T entity);

@@ -83,7 +83,12 @@ export class Table extends React.Component<ITableData, IData> {
     }
 
     search(query: string) {
-       this.populateData(query);
+        this.setState({
+            offset: 0,
+            query: query
+        }, () => {
+            this.populateData(query);
+        });
     }
 
     render() {

@@ -54,7 +54,13 @@ var Table = (function (_super) {
         });
     };
     Table.prototype.search = function (query) {
-        this.populateData(query);
+        var _this = this;
+        this.setState({
+            offset: 0,
+            query: query
+        }, function () {
+            _this.populateData(query);
+        });
     };
     Table.prototype.render = function () {
         return (React.createElement("div", null, React.createElement(TableSearch, {onSearch: this.search}), React.createElement("table", {className: "table table-responsive table-bordered"}, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Id"), React.createElement("th", null, "Fund Name"), React.createElement("th", null, "Fund Description"), React.createElement("th", null, "Last fund value"), React.createElement("th", null, "Last fund date value"))), React.createElement(TableRows, {data: this.state.data})), React.createElement(ReactPaginate, {previousLabel: "previous", nextLabel: "next", breakLabel: React.createElement("a", {href: ""}, "..."), breakClassName: "break-me", pageCount: this.state.pageCount, marginPagesDisplayed: 2, pageRangeDisplayed: 5, onPageChange: this.pageChanged, containerClassName: "pagination", activeClassName: "active"})));
@@ -87,7 +93,7 @@ var TableSearch = (function (_super) {
         this.props.onSearch($("#inputSearch").val());
     };
     TableSearch.prototype.render = function () {
-        return (React.createElement("div", {className: "form-horizontal", id: "searchForm"}, React.createElement("div", {className: "form-group"}, React.createElement("div", {className: "col-md-4"}, React.createElement("input", {name: "inputSearch", type: "text", className: "form-control", id: "inputSearch"})), React.createElement("div", {className: "col-md-2 inline"}, React.createElement("button", {id: "btnSearch", className: "btn btn-default", onClick: this.onSearch}, "Search")))));
+        return (React.createElement("div", {className: "form-horizontal", id: "searchForm"}, React.createElement("div", {className: "form-group"}, React.createElement("div", {className: "col-md-4"}, React.createElement("label", {className: "col-md-2 control-label"}, "Name"), React.createElement("div", {className: "col-md-10"}, React.createElement("input", {name: "inputSearch", type: "text", className: "form-control", id: "inputSearch"}))), React.createElement("div", {className: "col-md-2 inline"}, React.createElement("button", {id: "btnSearch", className: "btn btn-default", onClick: this.onSearch}, "Search")))));
     };
     return TableSearch;
 }(React.Component));
