@@ -63,8 +63,11 @@ namespace Accudelta.Data.Base
         {
             return this.ObjectSet.Take<T>(total);
         }
-        public IEnumerable<T> PaginatedList(Expression<Func<T, int>> sort, int skipeRows, int pageSize)
+        public IEnumerable<T> PaginatedList(Expression<Func<T, int>> sort, Expression<Func<T, bool>> filter, int skipeRows, int pageSize)
         {
+            if(filter != null)
+                return this.ObjectSet.Where(filter).OrderBy(sort).Skip<T>(skipeRows).Take(pageSize);
+
             return this.ObjectSet.OrderBy(sort).Skip<T>(skipeRows).Take(pageSize);
         }
 
@@ -72,8 +75,7 @@ namespace Accudelta.Data.Base
         {
             return this.ObjectSet.SqlQuery(name, parameteres);
         }
-
-
+        
         public IEnumerable<T> Find(Func<T, bool> where)
         {
             return this.ObjectSet.Where<T>(where);
@@ -88,7 +90,6 @@ namespace Accudelta.Data.Base
         {
             return this.ObjectSet.First<T>(where);
         }
-
         public T FirstOrDefault(Expression<Func<T, bool>> predicate)
         {
             return this.ObjectSet.FirstOrDefault<T>(predicate);

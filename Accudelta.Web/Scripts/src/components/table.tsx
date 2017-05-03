@@ -9,7 +9,8 @@ interface IData {
     data?: any[],
     pageCount?: number,
     offset?: number,
-    perPage?: number
+    perPage?: number,
+    query?: string
 }
 interface ITableData {
     url: string
@@ -19,6 +20,12 @@ interface ITableRowsData {
 }
 interface ITableRowsState {
     redirect: boolean
+}
+interface ITableSearchProps {
+    onSearch: (query: string) => void;
+}
+interface ITableSearchState {
+    query:string
 }
 interface Nothing { }
 
@@ -32,19 +39,21 @@ export class Table extends React.Component<ITableData, IData> {
             data: [],
             offset: 0,
             perPage: 10,
-            pageCount: 10            
+            pageCount: 10,
+            query: ""          
         };
 
         this.pageChanged = this.pageChanged.bind(this);
+        this.search = this.search.bind(this);
     }    
     
-    populateData() {     
+    populateData(query:string) {     
         
         var urlFull = Utils.Utils.home() + this.props.url;
         Utils.Utils.showLoading(true);
         $.ajax({
                 url: urlFull,
-                data: { offset: this.state.offset, limit: this.state.perPage },
+                data: { offset: this.state.offset, limit: this.state.perPage, query: query },
                 type: 'GET',
                 success: function (data: any) {
                     this.setState({
@@ -61,7 +70,7 @@ export class Table extends React.Component<ITableData, IData> {
     }
     
     componentDidMount() {
-        this.populateData();
+        this.populateData("");
     }
 
     pageChanged(data: any) {
@@ -69,13 +78,18 @@ export class Table extends React.Component<ITableData, IData> {
         let offset = Math.ceil(selected * this.state.perPage);
 
         this.setState({ offset: offset }, () => {
-            this.populateData();
+            this.populateData(this.state.query);
         });
+    }
+
+    search(query: string) {
+       this.populateData(query);
     }
 
     render() {
             return (
                 <div>
+                    <TableSearch onSearch={this.search} />
                     <table className="table table-responsive table-bordered">
                         <thead>
                             <tr>
@@ -129,4 +143,35 @@ export class TableRows extends React.Component<ITableRowsData, Nothing> {
             </tbody>
         );
     }
+}
+
+export class TableSearch extends React.Component<ITableSearchProps, ITableSearchState> {
+
+    public props: ITableSearchProps;
+
+    constructor(props: any) {
+        super(props);
+        this.state = { query: "" }
+        this.onSearch = this.onSearch.bind(this);
+    }
+
+    onSearch() {
+        this.props.onSearch($("#inputSearch").val());
+    }
+
+    render() {        
+        return (
+            <div className="form-horizontal" id="searchForm">
+                <div className="form-group"> 
+                    <div className="col-md-4">
+                        <label className="col-md-2 control-label">Name</label>
+                        <div className="col-md-10"><input name="inputSearch" type="text" className="form-control" id="inputSearch" /></div>
+                    </div>                        
+                    <div className="col-md-2 inline">
+                        <button id="btnSearch" className="btn btn-default" onClick={this.onSearch}>Search</button>
+                    </div>
+                </div>
+            </div>
+           );
+        }
 }

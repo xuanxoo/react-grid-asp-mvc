@@ -27,14 +27,14 @@ namespace Accudelta.Web.Controllers
 
         [HttpGet]
         [OutputCache(Duration = 0)]
-        public ActionResult GetFunds(int offset, int limit)
+        public ActionResult GetFunds(int offset, int limit, string query)
         {
-            var data = fundService.GetFunds(offset, limit);
-            if (data == null || data.Count() < 1)
+            var data = fundService.GetFunds(offset, limit, query);
+            if (data == null)
                 return new HttpNotFoundResult();
                    
             var fundsVM = Mapper.Map<IEnumerable<Model.V_FundWithLastValue>, IEnumerable<FundModel>>(data);
-            var counter = fundService.CountFunds();
+            var counter = fundService.CountFunds(query);
             var fundTableViewModel = new FundTableModel()
             {
                 TotalCount = counter,
