@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/79725c759902bcbf5647441b072c33e994326f6e/react-paginate/index.d.ts",
+    "raw": "registry:dt/react-paginate#4.2.0+20170323151434",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/79725c759902bcbf5647441b072c33e994326f6e/react-paginate/index.d.ts"
+  }
+}

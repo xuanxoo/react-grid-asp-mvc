@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accudelta.Model", "Accudelta.Model\Accudelta.Model.csproj", "{0B46AF64-7DE5-4F85-94CF-3EB2C58B80A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accudelta.Data", "Accudelta.Data\Accudelta.Data.csproj", "{6BB79CD9-074D-42A1-8BD4-059AD9D15FDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accudelta.Service", "Accudelta.Service\Accudelta.Service.csproj", "{D3F825E7-88A0-4463-A2C3-720373B62059}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Accudelta.DB", "Accudelta.DB\Accudelta.DB.sqlproj", "{46B63537-F160-439B-8C62-CBA5566CA374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accudelta.Web", "Accudelta.Web\Accudelta.Web.csproj", "{3BBDC960-1E8A-43D6-A34D-A2961D1F9BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accudelta.Web.Test", "Accudelta.Web.Test\Accudelta.Web.Test.csproj", "{7966D03E-61DD-4A92-8954-262FF5DC0FEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B46AF64-7DE5-4F85-94CF-3EB2C58B80A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B46AF64-7DE5-4F85-94CF-3EB2C58B80A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B46AF64-7DE5-4F85-94CF-3EB2C58B80A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B46AF64-7DE5-4F85-94CF-3EB2C58B80A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB79CD9-074D-42A1-8BD4-059AD9D15FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB79CD9-074D-42A1-8BD4-059AD9D15FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB79CD9-074D-42A1-8BD4-059AD9D15FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB79CD9-074D-42A1-8BD4-059AD9D15FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F825E7-88A0-4463-A2C3-720373B62059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F825E7-88A0-4463-A2C3-720373B62059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F825E7-88A0-4463-A2C3-720373B62059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F825E7-88A0-4463-A2C3-720373B62059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B63537-F160-439B-8C62-CBA5566CA374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B63537-F160-439B-8C62-CBA5566CA374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B63537-F160-439B-8C62-CBA5566CA374}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{46B63537-F160-439B-8C62-CBA5566CA374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B63537-F160-439B-8C62-CBA5566CA374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B63537-F160-439B-8C62-CBA5566CA374}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3BBDC960-1E8A-43D6-A34D-A2961D1F9BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBDC960-1E8A-43D6-A34D-A2961D1F9BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBDC960-1E8A-43D6-A34D-A2961D1F9BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBDC960-1E8A-43D6-A34D-A2961D1F9BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7966D03E-61DD-4A92-8954-262FF5DC0FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7966D03E-61DD-4A92-8954-262FF5DC0FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7966D03E-61DD-4A92-8954-262FF5DC0FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7966D03E-61DD-4A92-8954-262FF5DC0FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
